@@ -31,6 +31,7 @@ void dup(kkvm *);
 void swap(kkvm *);
 void deep(kkvm *);
 void add(kkvm *);
+<<<<<<< HEAD
 void mul(kkvm *);
 void sub(kkvm *);
 void div(kkvm *);
@@ -40,5 +41,7 @@ void shr(kkvm *);
 void shl(kkvm *);
 void ror(kkvm *);
 void rol(kkvm *);
+=======
+>>>>>>> 9882ea05b3a3806b9a8282ae7a61dafe28eb6f62
 
 #endif // KKVM_H

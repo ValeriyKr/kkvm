@@ -2,12 +2,20 @@
 1439067406 source:c:\users\valeriy_k\documents\cpp\kkvm\src\kkvm.cpp
 	"kkvm.h"
 
+<<<<<<< HEAD
 1439271255 c:\users\valeriy_k\documents\cpp\kkvm\include\kkvm.h
+=======
+1439098596 c:\users\valeriy_k\documents\cpp\kkvm\include\kkvm.h
+>>>>>>> 9882ea05b3a3806b9a8282ae7a61dafe28eb6f62
 	<iostream>
 	<climits>
 	"globals.h"
 
+<<<<<<< HEAD
 1439272525 source:c:\users\valeriy_k\documents\cpp\kkvm\src\main.cpp
+=======
+1439092487 source:c:\users\valeriy_k\documents\cpp\kkvm\src\main.cpp
+>>>>>>> 9882ea05b3a3806b9a8282ae7a61dafe28eb6f62
 	"main.h"
 
 1439060925 c:\users\valeriy_k\documents\cpp\kkvm\include\main.h
@@ -16,8 +24,14 @@
 	"kkvm.h"
 	"globals.h"
 
+<<<<<<< HEAD
 1439271212 c:\users\valeriy_k\documents\cpp\kkvm\include\globals.h
 
 1439272942 source:c:\users\valeriy_k\documents\cpp\kkvm\src\instructionset.cpp
+=======
+1439066656 c:\users\valeriy_k\documents\cpp\kkvm\include\globals.h
+
+1439092430 source:c:\users\valeriy_k\documents\cpp\kkvm\src\instructionset.cpp
+>>>>>>> 9882ea05b3a3806b9a8282ae7a61dafe28eb6f62
 	"kkvm.h"
 
