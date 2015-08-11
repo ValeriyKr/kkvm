@@ -2,6 +2,7 @@
 #define KKVM_H
 
 #include <iostream>
+#include <cstdio>
 #include <inttypes.h>
 
 #include "globals.h"
@@ -50,6 +51,9 @@ void deip(kkvm *);
 void ieip(kkvm *);
 void dnip(kkvm *);
 void inip(kkvm *);
-
+void writew(kkvm *);
+void readw(kkvm *);
+void writea(kkvm *);
+void reada(kkvm *);
 
 #endif // KKVM_H

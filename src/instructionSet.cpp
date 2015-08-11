@@ -27,7 +27,11 @@ void (*instrSet[INSTRUCTIONSCOUNT])(kkvm *) = {
 	deip,
 	ieip,
 	dnip,
-	inip
+	inip,
+	writew,
+	readw,
+	writea,
+	reada
 };
 
 void fail(kkvm *vm) {
@@ -316,4 +320,40 @@ void inip(kkvm *vm) {
 	}
 	vm->sp--;
 	return;
+}
+
+void writew(kkvm *vm) {
+	if (vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	printf("%u", vm->Stack[vm->sp]);
+	vm->sp--;
+}
+
+void readw(kkvm *vm) {
+	vm->sp++;
+	if (vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	scanf("%u", vm->Stack[vm->sp]);
+}
+
+void writea(kkvm *vm) {
+	if (vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	putchar((char) (vm->Stack[vm->sp] % 256));
+	vm->sp--;
+}
+
+void reada(kkvm *vm) {
+	vm->sp++;
+	if (vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	vm->Stack[vm->sp] = getchar();
 }

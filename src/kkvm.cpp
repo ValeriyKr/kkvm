@@ -17,9 +17,9 @@ void kkvm::run() {
 	offset += 2;
 	ip = offset;
 	while (state == Run) {
-		dumpStack();
+		/*dumpStack();
 		dumpRAM();
-		dumpRegisters();
+		dumpRegisters();*/
 		instrSet[RAM[ip]](this);
 		ip++;
 	}
