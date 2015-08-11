@@ -40,5 +40,16 @@ void shr(kkvm *);
 void shl(kkvm *);
 void ror(kkvm *);
 void rol(kkvm *);
+void bnot(kkvm *);
+void band(kkvm *);
+void bor(kkvm *);
+void bxor(kkvm *);
+void dip(kkvm *);
+void iip(kkvm *);
+void deip(kkvm *);
+void ieip(kkvm *);
+void dnip(kkvm *);
+void inip(kkvm *);
+
 
 #endif // KKVM_H

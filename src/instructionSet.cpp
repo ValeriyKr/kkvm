@@ -17,7 +17,17 @@ void (*instrSet[INSTRUCTIONSCOUNT])(kkvm *) = {
 	shr,
 	shl,
 	ror,
-	rol
+	rol,
+	bnot,
+	band,
+	bor,
+	bxor,
+	dip,
+	iip,
+	deip,
+	ieip,
+	dnip,
+	inip
 };
 
 void fail(kkvm *vm) {
@@ -77,6 +87,7 @@ void deep(kkvm *vm) {
 		return;
 	}
 	vm->Stack[vm->sp] = vm->Stack[vm->sp - vm->RAM[vm->ip] - 1];
+	
 }
 
 void add(kkvm *vm) {
@@ -166,4 +177,143 @@ void rol(kkvm *vm) {
 		return;
 	}
 	vm->Stack[vm->sp] = (vm->Stack[vm->sp] << vm->RAM[vm->ip]) | (vm->Stack[vm->sp] >> (8*sizeof(Word)-vm->RAM[vm->ip]));
+}
+
+void bnot(kkvm *vm) {
+	if (vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	vm->Stack[vm->sp] = ~vm->Stack[vm->sp];
+}
+
+void band(kkvm *vm) {
+	if (vm->sp == 0 || vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	vm->Stack[vm->sp-1] = vm->Stack[vm->sp] & vm->Stack[vm->sp-1];
+	vm->sp--;
+}
+
+void bor(kkvm *vm) {
+	if (vm->sp == 0 || vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	vm->Stack[vm->sp-1] = vm->Stack[vm->sp] | vm->Stack[vm->sp-1];
+	vm->sp--;
+}
+
+void bxor(kkvm *vm) {
+	if (vm->sp == 0 || vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	vm->Stack[vm->sp-1] = vm->Stack[vm->sp] ^ vm->Stack[vm->sp-1];
+	vm->sp--;
+}
+
+void dip(kkvm *vm) {
+	vm->ip -= vm->RAM[vm->ip+1];
+	if (vm->ip >= RAMSIZE) {
+		vm->state = Fail;
+		return;
+	}
+}
+
+void iip(kkvm *vm) {
+	vm->ip += vm->RAM[vm->ip+1];
+	if (vm->ip >= RAMSIZE) {
+		vm->state = Fail;
+		return;
+	}
+}
+
+void deip(kkvm *vm) {
+	if (vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	if (vm->Stack[vm->sp] == 0) {
+		vm->ip -= vm->RAM[vm->ip+1];
+		if (vm->ip >= RAMSIZE) {
+			vm->state = Fail;
+			return;
+		}
+	} else {
+		vm->ip++;
+		if (vm->ip >= RAMSIZE) {
+			vm->state = Fail;
+			return;
+		}
+	}
+	vm->sp--;
+	return;
+}
+
+void ieip(kkvm *vm) {
+	if (vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	if (vm->Stack[vm->sp] == 0) {
+		vm->ip += vm->RAM[vm->ip+1];
+		if (vm->ip >= RAMSIZE) {
+			vm->state = Fail;
+			return;
+		}
+	} else {
+		vm->ip++;
+		if (vm->ip >= RAMSIZE) {
+			vm->state = Fail;
+			return;
+		}
+	}
+	vm->sp--;
+	return;
+}
+
+void dnip(kkvm *vm) {
+	if (vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	if (vm->Stack[vm->sp] != 0) {
+		vm->ip -= vm->RAM[vm->ip+1];
+		if (vm->ip >= RAMSIZE) {
+			vm->state = Fail;
+			return;
+		}
+	} else {
+		vm->ip++;
+		if (vm->ip >= RAMSIZE) {
+			vm->state = Fail;
+			return;
+		}
+	}
+	vm->sp--;
+	return;
+}
+
+void inip(kkvm *vm) {
+	if (vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	if (vm->Stack[vm->sp] != 0) {
+		vm->ip += vm->RAM[vm->ip+1];
+		if (vm->ip >= RAMSIZE) {
+			vm->state = Fail;
+			return;
+		}
+	} else {
+		vm->ip++;
+		if (vm->ip >= RAMSIZE) {
+			vm->state = Fail;
+			return;
+		}
+	}
+	vm->sp--;
+	return;
 }
