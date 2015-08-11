@@ -7,7 +7,6 @@ int main() {
 	
 	vm.RAM[0] = 0x0;
 	vm.RAM[1] = 0x0;
-<<<<<<< HEAD
 	vm.RAM[2] = 0x1;   // nop
 	vm.RAM[3] = 0x2;   // push 0x190 ; 0x190
 	vm.RAM[4] = 0x190;
@@ -26,14 +25,6 @@ int main() {
 	//vm.RAM[17] = 0xa;  // div        ; 0x7B 0x3
 	vm.RAM[16] = 0xf;
 	vm.RAM[17] = 0x4;
-=======
-	vm.RAM[2] = 0x1;
-	vm.RAM[3] = 0x2;
-	vm.RAM[4] = 0x190;
-	vm.RAM[5] = 0x2;
-	vm.RAM[6] = 0x20;
-	vm.RAM[7] = 0x7;
->>>>>>> 9882ea05b3a3806b9a8282ae7a61dafe28eb6f62
 	
 	vm.run();
 	

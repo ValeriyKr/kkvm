@@ -8,7 +8,6 @@ void (*instrSet[INSTRUCTIONSCOUNT])(kkvm *) = {
 	dup,
 	swap,
 	deep,
-<<<<<<< HEAD
 	add,
 	mul,
 	sub,
@@ -19,9 +18,6 @@ void (*instrSet[INSTRUCTIONSCOUNT])(kkvm *) = {
 	shl,
 	ror,
 	rol
-=======
-	add
->>>>>>> 9882ea05b3a3806b9a8282ae7a61dafe28eb6f62
 };
 
 void fail(kkvm *vm) {
@@ -91,7 +87,6 @@ void add(kkvm *vm) {
 	vm->Stack[vm->sp-1] = vm->Stack[vm->sp] + vm->Stack[vm->sp-1];
 	vm->sp--;
 }
-<<<<<<< HEAD
 
 void mul(kkvm *vm) {
 	if (vm->sp == 0 || vm->sp >= STACKSIZE) {
@@ -172,5 +167,3 @@ void rol(kkvm *vm) {
 	}
 	vm->Stack[vm->sp] = (vm->Stack[vm->sp] << vm->RAM[vm->ip]) | (vm->Stack[vm->sp] >> (8*sizeof(Word)-vm->RAM[vm->ip]));
 }
-=======
->>>>>>> 9882ea05b3a3806b9a8282ae7a61dafe28eb6f62
