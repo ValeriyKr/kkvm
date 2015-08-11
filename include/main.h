@@ -2,7 +2,7 @@
 #define MAIN_H
 
 #include <iostream>
-#include <climits>
+#include <inttypes.h>
 
 #include "kkvm.h"
 #include "globals.h"

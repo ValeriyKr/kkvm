@@ -2,7 +2,7 @@
 #define KKVM_H
 
 #include <iostream>
-#include <climits>
+#include <inttypes.h>
 
 #include "globals.h"
 
@@ -15,7 +15,7 @@ class kkvm {
 		void dumpStack();
 		void dumpRAM();
 		void dumpRegisters();
-		
+
 		Word RAM[RAMSIZE];
 		Word Stack[STACKSIZE];
 		Word sp, ip, offset, state;

@@ -1,6 +1,8 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#include <inttypes.h>
+
 typedef uint32_t Word;
 
 const size_t RAMSIZE = 20;
