@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1439067406 source:c:\users\valeriy_k\documents\cpp\kkvm\src\kkvm.cpp
+	"kkvm.h"
+
+1439271255 c:\users\valeriy_k\documents\cpp\kkvm\include\kkvm.h
+	<iostream>
+	<climits>
+	"globals.h"
+
+1439272525 source:c:\users\valeriy_k\documents\cpp\kkvm\src\main.cpp
+	"main.h"
+
+1439060925 c:\users\valeriy_k\documents\cpp\kkvm\include\main.h
+	<iostream>
+	<climits>
+	"kkvm.h"
+	"globals.h"
+
+1439271212 c:\users\valeriy_k\documents\cpp\kkvm\include\globals.h
+
+1439272942 source:c:\users\valeriy_k\documents\cpp\kkvm\src\instructionset.cpp
+	"kkvm.h"
+
