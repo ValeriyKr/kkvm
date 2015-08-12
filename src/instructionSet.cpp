@@ -220,7 +220,7 @@ void bxor(kkvm *vm) {
 
 void dip(kkvm *vm) {
 	vm->ip -= vm->RAM[vm->ip+1];
-	if (vm->ip >= RAMSIZE) {
+	if ((vm->ip - vm->offset) >= RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -241,7 +241,7 @@ void deip(kkvm *vm) {
 	}
 	if (vm->Stack[vm->sp] == 0) {
 		vm->ip -= vm->RAM[vm->ip+1];
-		if (vm->ip >= RAMSIZE) {
+		if ((vm->ip - vm->offset)  >= RAMSIZE) {
 			vm->state = Fail;
 			return;
 		}
@@ -285,7 +285,7 @@ void dnip(kkvm *vm) {
 	}
 	if (vm->Stack[vm->sp] != 0) {
 		vm->ip -= vm->RAM[vm->ip+1];
-		if (vm->ip >= RAMSIZE) {
+		if ((vm->ip - vm->offset)  >= RAMSIZE) {
 			vm->state = Fail;
 			return;
 		}
