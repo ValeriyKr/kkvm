@@ -2,6 +2,7 @@
 #define MAIN_H
 
 #include <iostream>
+#include <cstdio>
 #include <inttypes.h>
 
 #include "kkvm.h"

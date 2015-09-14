@@ -337,7 +337,7 @@ void readw(kkvm *vm) {
 		vm->state = Fail;
 		return;
 	}
-	scanf("%u", vm->Stack[vm->sp]);
+	scanf("%u", &(vm->Stack[vm->sp]));
 }
 
 void writea(kkvm *vm) {

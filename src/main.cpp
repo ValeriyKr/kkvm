@@ -2,8 +2,11 @@
 
 kkvm vm;
 
-int main() {
+int main(int argc, char *argv[]) {
 	std::ios_base::sync_with_stdio(0);
+	
+	/*
+	//PROGRAM EXAMPLE
 	
 	vm.RAM[0] = 0x0;
 	vm.RAM[1] = 0x0;
@@ -28,16 +31,29 @@ int main() {
 	vm.RAM[20] = 0xc;
 	vm.RAM[21] = 0x5;   // swap       ; [result-1] 0xc [result_last]
 	vm.RAM[22] = 0x1b;  // writew     ; [result-1] 0xc
-	vm.RAM[23] = 0x2;   // push 0x20 ; [result-1] 0xc <SPACE>
+	vm.RAM[23] = 0x2;   // push 0x20  ; [result-1] 0xc <SPACE>
 	vm.RAM[24] = 0x20;
 	vm.RAM[25] = 0x1d;  // writea     ; [result-1] 0xc
 	vm.RAM[26] = 0xc;   // dec        ; [result-1] 0xb
 	vm.RAM[27] = 0x4;   // dup        ; [result-1] 0xb 0xb
-	vm.RAM[28] = 0x19;  // inip 0x5
+	vm.RAM[28] = 0x19;  // dnip 0x8
 	vm.RAM[29] = 0x8;
+	*/
 	
-	vm.run();
-	vm.dumpRegisters();
+	if (argc != 2) {
+		std::cout << "Usage: kkvm <program>\n";
+		return 0;
+	}
+	
+	FILE *fp = fopen(argv[1], "rb");
+	if (fp == NULL) {
+		std::cout << "Reading error\n";
+	} else {
+		fread(vm.RAM, sizeof(Word), RAMSIZE, fp);
+		
+		vm.run();
+		vm.dumpRegisters();
+	}
 	
 	return 0;
 }
