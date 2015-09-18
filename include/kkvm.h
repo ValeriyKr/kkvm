@@ -75,5 +75,6 @@ void writew(kkvm *);
 void readw(kkvm *);
 void writea(kkvm *);
 void reada(kkvm *);
+void deeps(kkvm *);
 
 #endif // KKVM_H

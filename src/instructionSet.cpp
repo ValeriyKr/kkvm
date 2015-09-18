@@ -50,7 +50,8 @@ void (*instrSet[INSTRUCTIONSCOUNT])(kkvm *) = {
 	writew,
 	readw,
 	writea,
-	reada
+	reada,
+	deeps
 };
 
 void fail(kkvm *vm) {
@@ -110,7 +111,6 @@ void deep(kkvm *vm) {
 		return;
 	}
 	vm->Stack[vm->sp] = vm->Stack[vm->sp - vm->RAM[vm->ip] - 1];
-	
 }
 
 void add(kkvm *vm) {
@@ -375,4 +375,16 @@ void reada(kkvm *vm) {
 		return;
 	}
 	vm->Stack[vm->sp] = getchar();
+}
+
+void deeps(kkvm *vm) {
+	if (vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	if (vm->sp - vm->Stack[vm->sp] >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	vm->Stack[vm->sp] = vm->Stack[vm->sp - vm->Stack[vm->sp]];
 }
