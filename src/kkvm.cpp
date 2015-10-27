@@ -39,8 +39,6 @@ void kkvm::run() {
 		/*dumpStack();
 		dumpRAM();
 		dumpRegisters();*/
-		//std::cout << std::flush;
-		//getchar();
 		instrSet[RAM[ip]](this);
 		ip++;
 	}
