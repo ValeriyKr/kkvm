@@ -347,6 +347,7 @@ void writew(kkvm *vm) {
 		return;
 	}
 	printf("%u", vm->Stack[vm->sp]);
+	fflush(stdout);
 	vm->sp--;
 }
 
@@ -365,6 +366,7 @@ void writea(kkvm *vm) {
 		return;
 	}
 	putchar((char) (vm->Stack[vm->sp] % 256));
+	fflush(stdout);
 	vm->sp--;
 }
 
