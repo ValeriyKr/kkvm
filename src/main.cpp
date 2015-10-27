@@ -73,6 +73,7 @@ int main(int argc, char *argv[]) {
 		vm.run();
 		vm.dumpRegisters();
 	}
+	fclose(fp);
 	
 	return 0;
 }
