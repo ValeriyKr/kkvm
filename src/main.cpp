@@ -66,10 +66,9 @@ int main(int argc, char *argv[]) {
 	
 	FILE *fp = fopen(argv[1], "rb");
 	if (fp == NULL) {
-		std::cout << "Reading error\n";
+		std::cerr << "Reading error\n";
 	} else {
 		fread(vm.RAM, sizeof(Word), RAMSIZE, fp);
-		
 		vm.run();
 		vm.dumpRegisters();
 	}
