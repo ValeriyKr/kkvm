@@ -3,7 +3,10 @@ Simple educational stack machine.
 
 ## Compile
 
-TODO: cmake.
+$ mkdir ./build
+$ cd ./build
+$ cmake ..
+$ make
 
 ## Usage
 
