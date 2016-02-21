@@ -28,9 +28,9 @@ Instructions are run in Code Segment only.
 0x15    dip arg         decrease IP for <arg>. After that it will increased
                         normally
 0x16    iip arg         increase IP for <arg>
-0x17    deip arg        iecrease IP if Stack's top element is zero
+0x17    deip arg        decrease IP if Stack's top element is zero
 0x18    ieip arg        increase IP if Stack's top element is zero
-0x19    dnip arg        iecrease IP if Stack's top element is not zero
+0x19    dnip arg        decrease IP if Stack's top element is not zero
 0x1a    inip arg        increase IP if Stack's top element is not zero
 0x1b    writew          take Word from Stack and write it as number
 0x1c    readw           read Word from stdin and push it on Stack
