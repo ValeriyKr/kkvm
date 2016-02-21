@@ -1,0 +1,17 @@
+kkvm specification, ver. 0.2
+
+kkvm is simple stack virtual machine.
+
+Word = uint32 -- base memory segment.
+
+Machine has RAM and Stack. Program is loaded into RAM, then run. Instruction Pointer register (IP) shows instruction that will be executed. First value of IP contained in RAM at 0x00000001. There are 0x6B6B766D (already in Little Endian) in RAM at 0x00000000.
+
+RAM divided for Words and contains data and code.
+
+Stack is base RW-available memory. Most instructions aperates with arguments in Stack. Stack Pointer register (SP) shows on Stack's top element. If incorrect instruction shifts SP into out of Stack range, kkvm stops with Fail state.
+
+Program sections is Data Segment (DS) and Code Segment (CS).
+
+DS is not supported now. It is used to store constants and variables in RAM. It starts from 0x00000003 and takes all RAM ceils before CS.
+
+CS starts after DS. It contains instructions for kkvm and their operands. Instructions described in doc/instrset. First instruction always is Nop. If some instruction tries execute something in DS, kkvm stops with Fail state.

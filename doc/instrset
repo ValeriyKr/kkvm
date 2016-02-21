@@ -1,0 +1,39 @@
+kkvm Instruction Set.
+
+It will be completed later.
+
+Instructions are run in Code Segment only.
+
+0x1     Nop             do nothing
+0x2     push arg        push arg on Stack
+0x3     pop             pop element from Stack
+0x4     dup             make duplicate of top Stack element
+0x5     swap            swap two top Stack elements
+0x6     deep arg        copy Stack[SP-arg] to top
+0x7     add             pop two elements and push their sum
+0x8     mul             pop two elements and push their product
+0x9     sub             pop two elements and push difference of top and second
+0xa     div             pop two elements, divide top with second and push
+                        quotient and reminder
+0xb     inc             increase Stack's top element
+0xc     dec             decrease Stack's top element
+0xd     shr arg         shift right on <arg> bits Stack's top element
+0xe     shr arg         shift left on <arg> bits Stack's top element
+0xf     ror arg         round shift right on <arg> bits Stack's top element
+0x10    rol arg         round shift left on <arg> bits Stack's top element
+0x11    bnot            binary "not" for Stack's top element
+0x12    band            binary "and" for Stack's top element
+0x13    bor             ...
+0x14    bxor            ...
+0x15    dip arg         decrease IP for <arg>. After that it will increased
+                        normally
+0x16    iip arg         increase IP for <arg>
+0x17    deip arg        iecrease IP if Stack's top element is zero
+0x18    ieip arg        increase IP if Stack's top element is zero
+0x19    dnip arg        iecrease IP if Stack's top element is not zero
+0x1a    inip arg        increase IP if Stack's top element is not zero
+0x1b    writew          take Word from Stack and write it as number
+0x1c    readw           read Word from stdin and push it on Stack
+0x1d    writea          take Word from Stack and write it as ascii symbol
+0x1e    reada           read ascii symbol and push it on Stack
+0x1f    deeps           copy Stack[SP-Stack[SP]] to Stack[SP]
