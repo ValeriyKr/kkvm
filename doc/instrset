@@ -4,6 +4,9 @@ It will be completed later.
 
 Instructions are run in Code Segment only.
 
+IP -- Instruction Pointer.
+SP -- Stack Pointer.
+
 0x1     Nop             do nothing
 0x2     push arg        push arg on Stack
 0x3     pop             pop element from Stack
@@ -14,7 +17,7 @@ Instructions are run in Code Segment only.
 0x8     mul             pop two elements and push their product
 0x9     sub             pop two elements and push difference of top and second
 0xa     div             pop two elements, divide top with second and push
-                        quotient and reminder
+                        quotient and remainder
 0xb     inc             increase Stack's top element
 0xc     dec             decrease Stack's top element
 0xd     shr arg         shift right on <arg> bits Stack's top element
@@ -22,9 +25,9 @@ Instructions are run in Code Segment only.
 0xf     ror arg         round shift right on <arg> bits Stack's top element
 0x10    rol arg         round shift left on <arg> bits Stack's top element
 0x11    bnot            binary "not" for Stack's top element
-0x12    band            binary "and" for Stack's top element
-0x13    bor             ...
-0x14    bxor            ...
+0x12    band            binary "and" for pair Stack's top element
+0x13    bor             binary "or" for pair Stack's top elements
+0x14    bxor            "xor" for pair Stack's top elements
 0x15    dip arg         decrease IP for <arg>. After that it will increased
                         normally
 0x16    iip arg         increase IP for <arg>
