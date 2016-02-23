@@ -16,3 +16,4 @@ push 0x1
     writew
     push 13
     writea
+    halt

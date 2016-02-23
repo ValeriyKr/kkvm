@@ -51,7 +51,8 @@ void (*instrSet[INSTRUCTIONSCOUNT])(kkvm *) = {
 	readw,
 	writea,
 	reada,
-	deeps
+	deeps,
+	halt
 };
 
 void fail(kkvm *vm) {
@@ -389,4 +390,8 @@ void deeps(kkvm *vm) {
 		return;
 	}
 	vm->Stack[vm->sp] = vm->Stack[vm->sp - vm->Stack[vm->sp]];
+}
+
+void halt(kkvm *vm) {
+	vm->state = Halt;
 }

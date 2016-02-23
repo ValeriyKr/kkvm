@@ -34,3 +34,4 @@ deep 2
 .end
     push 13
     writea
+    halt

@@ -40,3 +40,4 @@ SP -- Stack Pointer.
 0x1d    writea          take Word from Stack and write it as ascii symbol
 0x1e    reada           read ascii symbol and push it on Stack
 0x1f    deeps           copy Stack[SP-Stack[SP]] to Stack[SP]
+0x20    halt            stop execution
