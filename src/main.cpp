@@ -77,6 +77,7 @@ int main(int argc, char *argv[]) {
 		vm.dumpRAM();
 		vm.dumpRegisters();
 	}
+	std::cout << std::endl;
 	
 	fclose(fp);
 	

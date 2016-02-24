@@ -20,39 +20,39 @@
 #include "kkvm.h"
 
 void (*instrSet[INSTRUCTIONSCOUNT])(kkvm *) = {
-	fail,
+	fail,     // 0x0
 	nop,
 	push,
 	pop,
-	dup,
+	dup,      // 0x4
 	swap,
 	deep,
 	add,
-	mul,
+	mul,      // 0x8
 	sub,
 	div,
 	inc,
-	dec,
+	dec,      // 0xC
 	shr,
 	shl,
 	ror,
-	rol,
+	rol,      // 0x10
 	bnot,
 	band,
 	bor,
-	bxor,
+	bxor,     // 0x14
 	dip,
 	iip,
 	deip,
-	ieip,
+	ieip,     // 0x18
 	dnip,
 	inip,
 	writew,
-	readw,
+	readw,    // 0x1C
 	writea,
 	reada,
 	deeps,
-	halt
+	halt      // 0x20
 };
 
 void fail(kkvm *vm) {
