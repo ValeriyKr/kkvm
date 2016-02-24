@@ -67,11 +67,17 @@ int main(int argc, char *argv[]) {
 	FILE *fp = fopen(argv[1], "rb");
 	if (fp == NULL) {
 		std::cerr << "Reading error\n";
-	} else {
-		fread(vm.RAM, sizeof(Word), RAMSIZE, fp);
-		vm.run();
+		return 1;
+	}
+	fread(vm.RAM, sizeof(Word), RAMSIZE, fp);
+	
+	vm.run();
+	if (vm.state == Fail) {
+		vm.dumpStack();
+		vm.dumpRAM();
 		vm.dumpRegisters();
 	}
+	
 	fclose(fp);
 	
 	return 0;

@@ -27,15 +27,6 @@ kkvm::kkvm() {
 
 void kkvm::run() {
 	state = Run;
-	/*
-	for (offset = 0; RAM[offset] || RAM[offset+1]; offset++) {
-		if (offset + 2 == RAMSIZE) {
-			state = Fail;
-			return;
-		}
-	}
-	offset += 2;
-	*/
 	
 	// Now RAM[0] = "kkvm", RAM[1] == offset
 	offset = RAM[1];
@@ -44,8 +35,15 @@ void kkvm::run() {
 		/*dumpStack();
 		dumpRAM();
 		dumpRegisters();*/
-		instrSet[RAM[ip]](this);
-		ip++;
+		if (ip < offset ||
+			ip >= RAMSIZE ||
+			RAM[ip] >= INSTRUCTIONSCOUNT
+			) {
+			state = Fail;
+		} else {
+			instrSet[RAM[ip]](this);
+			ip++;
+		}
 	}
 }
 
