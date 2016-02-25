@@ -76,6 +76,8 @@ int main(int argc, char *argv[]) {
 		vm.dumpStack();
 		vm.dumpRAM();
 		vm.dumpRegisters();
+	} else if (vm.state == NotProgram) {
+		std::cerr << argv[0] << ": " << argv[1] << ": is not a program";
 	}
 	std::cout << std::endl;
 	

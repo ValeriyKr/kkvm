@@ -26,9 +26,12 @@ kkvm::kkvm() {
 }
 
 void kkvm::run() {
-	state = Run;
+	if (RAM[0] != 0x6D766B6B) {
+		state = NotProgram;
+		return;
+	}
 	
-	// Now RAM[0] = "kkvm", RAM[1] == offset
+	state = Run;
 	offset = RAM[1];
 	ip = offset;
 	while (state == Run) {

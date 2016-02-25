@@ -27,7 +27,7 @@
 
 #include "globals.h"
 
-enum State {Halt, Run, Fail};
+enum State {Halt, Run, Fail, NotProgram};
 
 class kkvm {
 	public:
