@@ -9,7 +9,7 @@ SP -- Stack Pointer.
 
 0x1     Nop             do nothing
 0x2     push arg        push arg on Stack
-0x3     pop             pop element from Stack
+0x3     pop             remove element from Stack
 0x4     dup             make duplicate of top Stack element
 0x5     swap            swap two top Stack elements
 0x6     deep arg        copy Stack[SP-arg] to top
@@ -41,3 +41,7 @@ SP -- Stack Pointer.
 0x1e    reada           read ascii symbol and push it on Stack
 0x1f    deeps           copy Stack[SP-Stack[SP]] to Stack[SP]
 0x20    halt            stop execution
+0x21    mpeek addr      peek Stack's top value and move it to RAM[addr]
+0x22    mpush addr      peek value from RAM[addr] and push it on Stack
+0x23    mpop addr       peek Stack's top value, move it to RAM[addr] and remove
+                        it from Stack

@@ -52,7 +52,10 @@ void (*instrSet[INSTRUCTIONSCOUNT])(kkvm *) = {
 	writea,
 	reada,
 	deeps,
-	halt      // 0x20
+	halt,     // 0x20
+	mpeek,
+	mpush,
+	mpop
 };
 
 void fail(kkvm *vm) {
@@ -395,3 +398,9 @@ void deeps(kkvm *vm) {
 void halt(kkvm *vm) {
 	vm->state = Halt;
 }
+
+void mpeek(kkvm *vm) {} // Unrealised
+
+void mpush(kkvm *vm) {} // Unrealised
+
+void mpop(kkvm *vm) {} // Unrealised
