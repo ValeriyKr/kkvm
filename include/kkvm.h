@@ -22,7 +22,6 @@
 
 #include <iostream>
 #include <cstdio>
-
 #include <inttypes.h>
 
 #include "globals.h"

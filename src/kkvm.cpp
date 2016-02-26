@@ -22,7 +22,7 @@
 kkvm::kkvm() {
 	for (size_t i = 0; i < RAMSIZE; RAM[i++] = 0);
 	for (size_t i = 0; i < STACKSIZE; Stack[i++] = 0);
-	sp = ip = -1;
+	sp = ip = 0xffffffff;
 }
 
 void kkvm::run() {
