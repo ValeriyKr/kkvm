@@ -1,5 +1,5 @@
 /*
-	Copyright 2015 Valeriy Kireev
+	Copyright 2015-2016 Valeriy Kireev
 	
 	This file is part of kkvm.
 	
@@ -80,5 +80,7 @@ void halt(kkvm *);
 void mpeek(kkvm *);
 void mpush(kkvm *);
 void mpop(kkvm *);
+void minc(kkvm *);
+void mdec(kkvm *);
 
 #endif // KKVM_H

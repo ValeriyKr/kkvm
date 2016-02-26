@@ -1,5 +1,5 @@
 /*
-	Copyright 2015 Valeriy Kireev
+	Copyright 2015-2016 Valeriy Kireev
 	
 	This file is part of kkvm.
 	
@@ -26,6 +26,6 @@ typedef uint32_t Word;
 
 const size_t RAMSIZE = 512;
 const size_t STACKSIZE = 512;
-const size_t INSTRUCTIONSCOUNT = 36;
+const size_t INSTRUCTIONSCOUNT = 38;
 
 #endif // GLOBALS_H

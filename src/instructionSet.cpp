@@ -1,5 +1,5 @@
 /*
-	Copyright 2015 Valeriy Kireev
+	Copyright 2015-2016 Valeriy Kireev
 	
 	This file is part of kkvm.
 	
@@ -55,7 +55,9 @@ void (*instrSet[INSTRUCTIONSCOUNT])(kkvm *) = {
 	halt,     // 0x20
 	mpeek,
 	mpush,
-	mpop
+	mpop,
+	minc,     // 0x24
+	mdec
 };
 
 void fail(kkvm *vm) {
@@ -399,8 +401,77 @@ void halt(kkvm *vm) {
 	vm->state = Halt;
 }
 
-void mpeek(kkvm *vm) {} // Unrealised
+void mpeek(kkvm *vm) {
+	if (vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	vm->ip++;
+	if (vm->ip >= RAMSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	if (vm->RAM[vm->ip] < 2 || vm->RAM[vm->ip] >= vm->offset) {
+		vm->state = Fail;
+		return;
+	}
+	vm->RAM[vm->RAM[vm->ip]] = vm->Stack[vm->sp];
+}
 
-void mpush(kkvm *vm) {} // Unrealised
+void mpush(kkvm *vm) {
+	vm->sp++;
+	if (vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	vm->ip++;
+	if (vm->ip >= RAMSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	vm->Stack[vm->sp] = vm->RAM[vm->RAM[vm->ip]];
+}
 
-void mpop(kkvm *vm) {} // Unrealised
+void mpop(kkvm *vm) {
+	if (vm->sp >= STACKSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	vm->ip++;
+	if (vm->ip >= RAMSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	if (vm->RAM[vm->ip] < 2 || vm->RAM[vm->ip] >= vm->offset) {
+		vm->state = Fail;
+		return;
+	}
+	vm->RAM[vm->RAM[vm->ip]] = vm->Stack[vm->sp];
+	vm->sp--;
+}
+
+void minc(kkvm *vm) {
+	vm->ip++;
+	if (vm->ip >= RAMSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	if (vm->RAM[vm->ip] < 2 || vm->RAM[vm->ip] >= vm->offset) {
+		vm->state = Fail;
+		return;
+	}
+	vm->RAM[vm->RAM[vm->ip]]++;
+}
+
+void mdec(kkvm *vm) {
+	vm->ip++;
+	if (vm->ip >= RAMSIZE) {
+		vm->state = Fail;
+		return;
+	}
+	if (vm->RAM[vm->ip] < 2 || vm->RAM[vm->ip] >= vm->offset) {
+		vm->state = Fail;
+		return;
+	}
+	vm->RAM[vm->RAM[vm->ip]]--;
+}

@@ -1,5 +1,5 @@
 /*
-	Copyright 2015 Valeriy Kireev
+	Copyright 2015-2016 Valeriy Kireev
 	
 	This file is part of kkvm.
 	

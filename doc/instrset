@@ -45,3 +45,5 @@ SP -- Stack Pointer.
 0x22    mpush addr      peek value from RAM[addr] and push it on Stack
 0x23    mpop addr       peek Stack's top value, move it to RAM[addr] and remove
                         it from Stack
+0x24    minc addr       increase RAM[addr]
+0x25    mdec addr       decrease RAM[addr]
