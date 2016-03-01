@@ -37,7 +37,8 @@ void kkvm::run() {
 	while (state == Run) {
 		/*dumpStack();
 		dumpRAM();
-		dumpRegisters();*/
+		dumpRegisters();
+		getchar();*/
 		if (ip < offset ||
 			ip >= RAMSIZE ||
 			RAM[ip] >= INSTRUCTIONSCOUNT
