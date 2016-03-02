@@ -69,7 +69,7 @@ void nop(kkvm *vm) {}
 void push(kkvm *vm) {
 	vm->ip++;
 	vm->sp++;
-	if (vm->sp >= STACKSIZE || vm->ip >= RAMSIZE) {
+	if (vm->sp >= vm->STACKSIZE || vm->ip >= vm->RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -77,7 +77,7 @@ void push(kkvm *vm) {
 }
 
 void pop(kkvm *vm) {
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -85,7 +85,7 @@ void pop(kkvm *vm) {
 }
 
 void dup(kkvm *vm) {
-	if (vm->sp >= STACKSIZE || vm->sp+1 >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE || vm->sp+1 >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -94,7 +94,7 @@ void dup(kkvm *vm) {
 }
 
 void swap(kkvm *vm) {
-	if (vm->sp == 0 || vm->sp >= STACKSIZE) {
+	if (vm->sp == 0 || vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -103,7 +103,7 @@ void swap(kkvm *vm) {
 
 void deep(kkvm *vm) {
 	vm->ip++;
-	if (vm->ip >= RAMSIZE) {
+	if (vm->ip >= vm->RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -112,7 +112,7 @@ void deep(kkvm *vm) {
 		return;
 	}
 	vm->sp++;
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -120,7 +120,7 @@ void deep(kkvm *vm) {
 }
 
 void add(kkvm *vm) {
-	if (vm->sp == 0 || vm->sp >= STACKSIZE) {
+	if (vm->sp == 0 || vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -129,7 +129,7 @@ void add(kkvm *vm) {
 }
 
 void mul(kkvm *vm) {
-	if (vm->sp == 0 || vm->sp >= STACKSIZE) {
+	if (vm->sp == 0 || vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -138,7 +138,7 @@ void mul(kkvm *vm) {
 }
 
 void sub(kkvm *vm) {
-	if (vm->sp == 0 || vm->sp >= STACKSIZE) {
+	if (vm->sp == 0 || vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -147,7 +147,7 @@ void sub(kkvm *vm) {
 }
 
 void div(kkvm *vm) {
-	if (vm->sp == 0 || vm->sp >= STACKSIZE) {
+	if (vm->sp == 0 || vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -157,7 +157,7 @@ void div(kkvm *vm) {
 }
 
 void inc(kkvm *vm) {
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -165,7 +165,7 @@ void inc(kkvm *vm) {
 }
 
 void dec(kkvm *vm) {
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -174,7 +174,7 @@ void dec(kkvm *vm) {
 
 void shr(kkvm *vm) {
 	vm->ip++;
-	if (vm->sp >= STACKSIZE || vm->ip >= RAMSIZE) {
+	if (vm->sp >= vm->STACKSIZE || vm->ip >= vm->RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -183,7 +183,7 @@ void shr(kkvm *vm) {
 
 void shl(kkvm *vm) {
 	vm->ip++;
-	if (vm->sp >= STACKSIZE || vm->ip >= RAMSIZE) {
+	if (vm->sp >= vm->STACKSIZE || vm->ip >= vm->RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -192,7 +192,7 @@ void shl(kkvm *vm) {
 
 void ror(kkvm *vm) {
 	vm->ip++;
-	if (vm->sp >= STACKSIZE || vm->ip >= RAMSIZE) {
+	if (vm->sp >= vm->STACKSIZE || vm->ip >= vm->RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -201,7 +201,7 @@ void ror(kkvm *vm) {
 
 void rol(kkvm *vm) {
 	vm->ip++;
-	if (vm->sp >= STACKSIZE || vm->ip >= RAMSIZE) {
+	if (vm->sp >= vm->STACKSIZE || vm->ip >= vm->RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -209,7 +209,7 @@ void rol(kkvm *vm) {
 }
 
 void bnot(kkvm *vm) {
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -217,7 +217,7 @@ void bnot(kkvm *vm) {
 }
 
 void band(kkvm *vm) {
-	if (vm->sp == 0 || vm->sp >= STACKSIZE) {
+	if (vm->sp == 0 || vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -226,7 +226,7 @@ void band(kkvm *vm) {
 }
 
 void bor(kkvm *vm) {
-	if (vm->sp == 0 || vm->sp >= STACKSIZE) {
+	if (vm->sp == 0 || vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -235,7 +235,7 @@ void bor(kkvm *vm) {
 }
 
 void bxor(kkvm *vm) {
-	if (vm->sp == 0 || vm->sp >= STACKSIZE) {
+	if (vm->sp == 0 || vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -245,7 +245,7 @@ void bxor(kkvm *vm) {
 
 void dip(kkvm *vm) {
 	vm->ip -= vm->RAM[vm->ip+1];
-	if ((vm->ip - vm->offset) >= RAMSIZE) {
+	if ((vm->ip - vm->offset) >= vm->RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -253,26 +253,26 @@ void dip(kkvm *vm) {
 
 void iip(kkvm *vm) {
 	vm->ip += vm->RAM[vm->ip+1];
-	if (vm->ip >= RAMSIZE) {
+	if (vm->ip >= vm->RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}
 }
 
 void deip(kkvm *vm) {
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
 	if (vm->Stack[vm->sp] == 0) {
 		vm->ip -= vm->RAM[vm->ip+1];
-		if ((vm->ip - vm->offset)  >= RAMSIZE) {
+		if ((vm->ip - vm->offset)  >= vm->RAMSIZE) {
 			vm->state = Fail;
 			return;
 		}
 	} else {
 		vm->ip++;
-		if (vm->ip >= RAMSIZE) {
+		if (vm->ip >= vm->RAMSIZE) {
 			vm->state = Fail;
 			return;
 		}
@@ -282,19 +282,19 @@ void deip(kkvm *vm) {
 }
 
 void ieip(kkvm *vm) {
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
 	if (vm->Stack[vm->sp] == 0) {
 		vm->ip += vm->RAM[vm->ip+1];
-		if (vm->ip >= RAMSIZE) {
+		if (vm->ip >= vm->RAMSIZE) {
 			vm->state = Fail;
 			return;
 		}
 	} else {
 		vm->ip++;
-		if (vm->ip >= RAMSIZE) {
+		if (vm->ip >= vm->RAMSIZE) {
 			vm->state = Fail;
 			return;
 		}
@@ -304,19 +304,19 @@ void ieip(kkvm *vm) {
 }
 
 void dnip(kkvm *vm) {
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
 	if (vm->Stack[vm->sp] != 0) {
 		vm->ip -= vm->RAM[vm->ip+1];
-		if ((vm->ip - vm->offset)  >= RAMSIZE) {
+		if ((vm->ip - vm->offset)  >= vm->RAMSIZE) {
 			vm->state = Fail;
 			return;
 		}
 	} else {
 		vm->ip++;
-		if (vm->ip >= RAMSIZE) {
+		if (vm->ip >= vm->RAMSIZE) {
 			vm->state = Fail;
 			return;
 		}
@@ -326,19 +326,19 @@ void dnip(kkvm *vm) {
 }
 
 void inip(kkvm *vm) {
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
 	if (vm->Stack[vm->sp] != 0) {
 		vm->ip += vm->RAM[vm->ip+1];
-		if (vm->ip >= RAMSIZE) {
+		if (vm->ip >= vm->RAMSIZE) {
 			vm->state = Fail;
 			return;
 		}
 	} else {
 		vm->ip++;
-		if (vm->ip >= RAMSIZE) {
+		if (vm->ip >= vm->RAMSIZE) {
 			vm->state = Fail;
 			return;
 		}
@@ -348,7 +348,7 @@ void inip(kkvm *vm) {
 }
 
 void writew(kkvm *vm) {
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -359,7 +359,7 @@ void writew(kkvm *vm) {
 
 void readw(kkvm *vm) {
 	vm->sp++;
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -367,7 +367,7 @@ void readw(kkvm *vm) {
 }
 
 void writea(kkvm *vm) {
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -378,7 +378,7 @@ void writea(kkvm *vm) {
 
 void reada(kkvm *vm) {
 	vm->sp++;
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -386,11 +386,11 @@ void reada(kkvm *vm) {
 }
 
 void deeps(kkvm *vm) {
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
-	if (vm->sp - vm->Stack[vm->sp] >= STACKSIZE) {
+	if (vm->sp - vm->Stack[vm->sp] >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -402,12 +402,12 @@ void halt(kkvm *vm) {
 }
 
 void mpeek(kkvm *vm) {
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
 	vm->ip++;
-	if (vm->ip >= RAMSIZE) {
+	if (vm->ip >= vm->RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -420,12 +420,12 @@ void mpeek(kkvm *vm) {
 
 void mpush(kkvm *vm) {
 	vm->sp++;
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
 	vm->ip++;
-	if (vm->ip >= RAMSIZE) {
+	if (vm->ip >= vm->RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -433,12 +433,12 @@ void mpush(kkvm *vm) {
 }
 
 void mpop(kkvm *vm) {
-	if (vm->sp >= STACKSIZE) {
+	if (vm->sp >= vm->STACKSIZE) {
 		vm->state = Fail;
 		return;
 	}
 	vm->ip++;
-	if (vm->ip >= RAMSIZE) {
+	if (vm->ip >= vm->RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -452,7 +452,7 @@ void mpop(kkvm *vm) {
 
 void minc(kkvm *vm) {
 	vm->ip++;
-	if (vm->ip >= RAMSIZE) {
+	if (vm->ip >= vm->RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}
@@ -465,7 +465,7 @@ void minc(kkvm *vm) {
 
 void mdec(kkvm *vm) {
 	vm->ip++;
-	if (vm->ip >= RAMSIZE) {
+	if (vm->ip >= vm->RAMSIZE) {
 		vm->state = Fail;
 		return;
 	}

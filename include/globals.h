@@ -24,8 +24,8 @@
 
 typedef uint32_t Word;
 
-const size_t RAMSIZE = 512;
-const size_t STACKSIZE = 512;
+const size_t RAMSIZE_DEFAULT = 512;
+const size_t STACKSIZE_DEFAULT = 512;
 const size_t INSTRUCTIONSCOUNT = 38;
 
 #endif // GLOBALS_H

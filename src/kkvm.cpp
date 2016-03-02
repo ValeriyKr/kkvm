@@ -20,6 +20,10 @@
 #include "kkvm.h"
 
 kkvm::kkvm() {
+	RAMSIZE = RAMSIZE_DEFAULT;
+	STACKSIZE = STACKSIZE_DEFAULT;
+	RAM = new Word[RAMSIZE];
+	Stack = new Word[STACKSIZE];
 	for (size_t i = 0; i < RAMSIZE; RAM[i++] = 0);
 	for (size_t i = 0; i < STACKSIZE; Stack[i++] = 0);
 	sp = ip = 0xffffffff;
@@ -81,4 +85,9 @@ void kkvm::dumpRAM() {
 
 void kkvm::dumpRegisters() {
 	std::cout << "\nStack Ptr: " << sp << "\nInstruction Ptr: " << ip << "\nOffset: " << offset << "\nState: " << state << std::endl;
+}
+
+kkvm::~kkvm() {
+	delete [] RAM;
+	delete [] Stack;
 }

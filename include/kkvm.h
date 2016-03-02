@@ -35,9 +35,11 @@ class kkvm {
 		void dumpStack();
 		void dumpRAM();
 		void dumpRegisters();
+		~kkvm();
 
-		Word RAM[RAMSIZE];
-		Word Stack[STACKSIZE];
+		Word *RAM;
+		Word *Stack;
+		Word RAMSIZE, STACKSIZE;
 		Word sp, ip, offset, state;
 };
 

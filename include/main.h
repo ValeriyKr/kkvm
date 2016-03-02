@@ -23,8 +23,13 @@
 #include <iostream>
 #include <cstdio>
 #include <inttypes.h>
+#include <cstring>
 
 #include "kkvm.h"
 #include "globals.h"
+
+int parse_args(int, char**);
+void print_usage(bool);
+void print_version();
 
 #endif // MAIN_H
