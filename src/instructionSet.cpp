@@ -382,7 +382,7 @@ void reada(kkvm *vm) {
 		vm->state = Fail;
 		return;
 	}
-	vm->Stack[vm->sp] = getchar();
+	vm->Stack[vm->sp] = (Word) getchar();
 }
 
 void deeps(kkvm *vm) {

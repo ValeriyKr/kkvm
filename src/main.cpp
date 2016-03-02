@@ -19,17 +19,19 @@
 
 #include "main.h"
 
-kkvm vm;
-
 int main(int argc, char *argv[]) {
 	std::ios_base::sync_with_stdio(0);
 
+	RAMSIZE = RAMSIZE_DEFAULT;
+	STACKSIZE = STACKSIZE_DEFAULT;
 	if (int help = parse_args(argc, argv)) {
 		if (help < 3) {
 			print_usage(help == 2);
 		}
 		return 0;
 	}
+
+	kkvm vm(RAMSIZE, STACKSIZE);
 
 	FILE *fp = fopen(argv[1], "rb");
 	if (fp == NULL) {
@@ -73,9 +75,23 @@ int parse_args(int argc, char *argv[]) {
 			print_version();
 			return 3;
 		} else if (!strcmp(argv[i], "--stack-size")) {
-			return 0; // TODO: implement it
+			if (i++ == argc) {
+				return 1;
+			}
+			char *end_ptr = NULL;
+			STACKSIZE = strtoull(argv[i], &end_ptr, 0);
+			if (argv[i] == end_ptr) {
+				return 1;
+			}
 		} else if (!strcmp(argv[i], "--ram-size")) {
-			return 0; // TODO: implement it
+			if (i++ == argc) {
+				return 1;
+			}
+			char *end_ptr = NULL;
+			RAMSIZE = strtoull(argv[i], &end_ptr, 0);
+			if (argv[i] == end_ptr) {
+				return 1;
+			}
 		} else {
 			return 1;
 		}

@@ -19,14 +19,14 @@
 
 #include "kkvm.h"
 
-kkvm::kkvm() {
-	RAMSIZE = RAMSIZE_DEFAULT;
-	STACKSIZE = STACKSIZE_DEFAULT;
+kkvm::kkvm(size_t ms, size_t ss) {
+	RAMSIZE = ms;
+	STACKSIZE = ss;
 	RAM = new Word[RAMSIZE];
 	Stack = new Word[STACKSIZE];
 	for (size_t i = 0; i < RAMSIZE; RAM[i++] = 0);
 	for (size_t i = 0; i < STACKSIZE; Stack[i++] = 0);
-	sp = ip = 0xffffffff;
+	sp = ip = 0xffffffffffffffff;
 }
 
 void kkvm::run() {

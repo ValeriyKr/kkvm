@@ -30,7 +30,7 @@ enum State {Halt, Run, Fail, NotProgram};
 
 class kkvm {
 	public:
-		kkvm();
+		kkvm(size_t, size_t);
 		void run();
 		void dumpStack();
 		void dumpRAM();
@@ -39,8 +39,9 @@ class kkvm {
 
 		Word *RAM;
 		Word *Stack;
-		Word RAMSIZE, STACKSIZE;
-		Word sp, ip, offset, state;
+		size_t RAMSIZE, STACKSIZE;
+		size_t sp, ip, offset;
+		State state;
 };
 
 extern void (*instrSet[INSTRUCTIONSCOUNT])(kkvm *);

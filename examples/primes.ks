@@ -1,4 +1,4 @@
-readw
+push 25600
 push 1
 
 .checkNext

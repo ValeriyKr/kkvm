@@ -32,4 +32,7 @@ int parse_args(int, char**);
 void print_usage(bool);
 void print_version();
 
+size_t STACKSIZE = 0;
+size_t RAMSIZE = 0;
+
 #endif // MAIN_H
