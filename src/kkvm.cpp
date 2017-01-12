@@ -19,6 +19,8 @@
 
 #include "kkvm.h"
 
+using namespace std;
+
 kkvm::kkvm(size_t ms, size_t ss) {
 	RAMSIZE = ms;
 	STACKSIZE = ss;
@@ -39,10 +41,6 @@ void kkvm::run() {
 	offset = RAM[1];
 	ip = offset;
 	while (state == Run) {
-		/*dumpStack();
-		dumpRAM();
-		dumpRegisters();
-		getchar();*/
 		if (ip < offset ||
 			ip >= RAMSIZE ||
 			RAM[ip] >= INSTRUCTIONSCOUNT
@@ -56,35 +54,36 @@ void kkvm::run() {
 }
 
 void kkvm::dumpStack() {
-	std::cout << "\nDUMP Stack:\n";
-	std::cout.unsetf(std::ios::dec);
-	std::cout.setf(std::ios::hex | std::ios::uppercase);
-	std::cout.fill('0');
+	cout << "\nDUMP Stack:\n";
+	cout.unsetf(ios::dec);
+	cout.setf(ios::hex | ios::uppercase);
+	cout.fill('0');
 	for (size_t i = 0; i < STACKSIZE; i++) {
-		std::cout.width(8);
-		std::cout << i << "\t" << Stack[i] << (sp == i ? "    <-" : "") << std::endl;
+		cout.width(8);
+		cout << i << "\t" << Stack[i] << (sp == i ? "    <-" : "") << endl;
 	}
-	std::cout.unsetf(std::ios::hex | std::ios::uppercase);
-	std::cout.fill(' ');
-	std::cout << "DUMP END\n";
+	cout.unsetf(ios::hex | ios::uppercase);
+	cout.fill(' ');
+	cout << "DUMP END\n";
 }
 
 void kkvm::dumpRAM() {
-	std::cout << "\nDUMP RAM:\n";
-	std::cout.unsetf(std::ios::dec);
-	std::cout.setf(std::ios::hex | std::ios::uppercase);
-	std::cout.fill('0');
+	cout << "\nDUMP RAM:\n";
+	cout.unsetf(ios::dec);
+	cout.setf(ios::hex | ios::uppercase);
+	cout.fill('0');
 	for (size_t i = 0; i < RAMSIZE; i++) {
-		std::cout.width(8);
-		std::cout << i << "\t" << RAM[i] << (ip == i ? "    <-" : "")<< std::endl;
+		cout.width(8);
+		cout << i << "\t" << RAM[i] << (ip == i ? "    <-" : "")<< endl;
 	}
-	std::cout.unsetf(std::ios::hex | std::ios::uppercase);
-	std::cout.fill(' ');
-	std::cout << "DUMP END\n";
+	cout.unsetf(ios::hex | ios::uppercase);
+	cout.fill(' ');
+	cout << "DUMP END\n";
 }
 
 void kkvm::dumpRegisters() {
-	std::cout << "\nStack Ptr: " << sp << "\nInstruction Ptr: " << ip << "\nOffset: " << offset << "\nState: " << state << std::endl;
+	cout << "\nStack Ptr: " << sp << "\nInstruction Ptr: " << ip
+         << "\nOffset: " << offset << "\nState: " << state << endl;
 }
 
 kkvm::~kkvm() {
